@@ -9,9 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.util.concurrent.TimeUnit;
-
 public class CommonAPI {
     public WebDriver driver=null;
     @Parameters({"url"})
@@ -41,6 +39,27 @@ public class CommonAPI {
             System.out.println("xpath did not work System uses Id locator");
             driver.findElement(By.id(locator)).sendKeys("medicare", Keys.ENTER);
         }
+    }
+    public void enteringTextIntoSearchBox(String locator,String value){
+        try {
+            driver.findElement(By.cssSelector(locator)).sendKeys(value);
+        }
+        catch (Exception e){
+            System.out.println("using css locaotor was not successful tryint ID");
+            try {
+                driver.findElement(By.id(locator)).sendKeys(value);
+            }
+            catch (Exception ex){
+                System.out.println("Using ID locator did not work trying something lese");
+                try {
+                    driver.findElement(By.xpath(locator)).sendKeys(value);
+                    }
+                catch (Exception e1){
+                    System.out.println("by using xpath it was possible to entr txt into searchbox");
+                }
+            }
+        }
+
     }
     public void clickOnSearchButton(String locator){
         driver.findElement(By.xpath(locator)).click();

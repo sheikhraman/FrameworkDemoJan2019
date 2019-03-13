@@ -11,6 +11,10 @@ public class SearchTest extends CommonAPI {
       enterTextIntoSearchBox("q");
     }
     @Test
+    public void searchBox(){
+        enteringTextIntoSearchBox("q","jobs");
+    }
+    @Test
     public void buttonClick(){
         clickOnSearchButton("//input[@type='submit' and @class='search-button']");
     }
